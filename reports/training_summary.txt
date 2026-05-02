@@ -1,0 +1,105 @@
+
+================================================================================
+MODEL TRAINING SUMMARY REPORT
+================================================================================
+
+1. TRAINING DATA
+   - Training set size: 226,980 samples
+   - Test set size: 56,746 samples
+   - Features: 30
+   - Fraud ratio (train): 0.0017 (378 fraud cases)
+   - Fraud ratio (test): 0.0017 (95 fraud cases)
+
+2. IMBALANCE HANDLING STRATEGY
+   - Method: Class weights / Scale Pos Weight (built-in to models)
+   - Logistic Regression: class_weight='balanced'
+   - Random Forest: class_weight='balanced'
+   - XGBoost: scale_pos_weight=599.48
+   - CatBoost: scale_pos_weight=599.48
+
+3. MODEL 1: LOGISTIC REGRESSION (BASELINE)
+   Training time: 3.61 seconds
+   
+   Test Set Metrics:
+   - Precision: 0.0296
+   - Recall: 0.8737
+   - F1-Score: 0.0572
+   - ROC-AUC: 0.9610
+   
+   Overfitting Analysis:
+   - Train ROC-AUC: 0.9801
+   - Test ROC-AUC: 0.9610
+   - Gap: 0.0191 (acceptable)
+
+4. MODEL 2: RANDOM FOREST
+   Training time: 35.37 seconds
+   Parameters: n_estimators=100, max_depth=15, min_samples_split=5
+   
+   Test Set Metrics:
+   - Precision: 0.8933
+   - Recall: 0.7053
+   - F1-Score: 0.7882
+   - ROC-AUC: 0.9544
+   
+   Overfitting Analysis:
+   - Train ROC-AUC: 1.0000
+   - Test ROC-AUC: 0.9544
+   - Gap: 0.0456 (acceptable)
+
+5. MODEL 3: XGBOOST
+   Training time: 22.36 seconds
+   Parameters: n_estimators=100, max_depth=5, learning_rate=0.1
+   
+   Test Set Metrics:
+   - Precision: 0.1941
+   - Recall: 0.8316
+   - F1-Score: 0.3147
+   - ROC-AUC: 0.9611
+   
+   Overfitting Analysis:
+   - Train ROC-AUC: 0.9973
+   - Test ROC-AUC: 0.9611
+   - Gap: 0.0363 (acceptable)
+
+6. MODEL 4: CATBOOST
+   Training time: 6.26 seconds
+   Parameters: iterations=100, depth=6, learning_rate=0.1
+   
+   Test Set Metrics:
+   - Precision: 0.5347
+   - Recall: 0.8105
+   - F1-Score: 0.6444
+   - ROC-AUC: 0.9741
+   
+   Overfitting Analysis:
+   - Train ROC-AUC: 0.9999
+   - Test ROC-AUC: 0.9741
+   - Gap: 0.0258 (acceptable)
+
+7. BASELINE COMPARISON (Sorted by ROC-AUC)
+   Best Model: CatBoost
+   ROC-AUC Score: 0.9741
+   
+   Model Rankings:
+1.             CatBoost (0.9741)
+2.              XGBoost (0.9611)
+3.  Logistic Regression (0.9610)
+4.        Random Forest (0.9544)
+
+8. SAVED ARTIFACTS
+   Models:
+   - ../models/model_lr.pkl
+   - ../models/model_rf.pkl
+   - ../models/model_xgb.pkl
+   - ../models/model_cb.pkl
+   
+   Comparison:
+   - ../reports/baseline_model_comparison.csv
+
+9. NEXT STEPS
+   ✓ Phase 4: Hyperparameter Tuning (optimize CatBoost)
+   ✓ Phase 5: Evaluation (comprehensive metrics on test set)
+   ✓ Phase 6: Model Selection (final model comparison)
+   ✓ Phase 7: SHAP Explainability
+
+================================================================================
