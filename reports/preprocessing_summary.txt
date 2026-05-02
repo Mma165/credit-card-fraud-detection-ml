@@ -1,0 +1,99 @@
+
+================================================================================
+DATA PREPROCESSING SUMMARY REPORT
+================================================================================
+
+1. DATA CLEANING
+   - Duplicates removed: 1,081
+   - Missing values: 0
+   - Final raw shape: (283726, 31)
+
+2. FEATURE ENGINEERING (Skewness Transformation)
+   - Highly skewed features identified: 16
+   - Transformation applied: log(1 + x) to ALL skewed features
+   - Features transformed: V6, V20, V21, V5, V8 ... (16 total)
+   
+   Skewness before/after transformation:
+   - V6: -1.0576 → -0.0260
+   - V20: -1.3163 → -0.0366
+   - V21: -1.3255 → 0.0828
+   - V5: -1.6126 → 0.0929
+   - V8: -1.6390 → 0.1473
+   - V10: -1.6427 → 0.1269
+   - V1: -1.6604 → -0.4115
+   - V17: -1.6705 → 0.0564
+   - V2: -1.8317 → 0.1450
+   - V7: -1.8628 → 0.2634
+
+   - Total features after transformation: 30
+
+3. TRAIN-TEST SPLIT (STRATIFIED)
+   - Training set: 226,980 samples
+   - Test set: 56,746 samples
+   - Split ratio: 80.0% / 20.0%
+
+4. CLASS DISTRIBUTION
+   Training set:
+   - Normal: 226,602 (99.83%)
+   - Fraud: 378 (0.17%)
+   - Imbalance ratio: 1:599
+
+   Test set:
+   - Normal: 56,651 (99.83%)
+   - Fraud: 95 (0.17%)
+   - Imbalance ratio: 1:596
+
+   ✓ Stratification successful: fraud ratio preserved
+
+5. FEATURE SCALING
+   - Scaler: StandardScaler
+   - Fitted on: Training data only (NO DATA LEAKAGE)
+   - Applied to: Train and test sets separately
+   - Train mean (after scaling): 0.000000 ≈ 0 ✓
+   - Train std (after scaling): 1.000000 ≈ 1 ✓
+
+6. CLASS IMBALANCE HANDLING
+   Strategy 1 (PRIMARY): Class Weights
+   - Normal class weight: 0.5008
+   - Fraud class weight: 300.2381
+   - Will be applied during model training
+
+   Strategy 2 (OPTIONAL): SMOTE
+   - Applied to training data only
+   - Training set before SMOTE: 226,980 samples
+   - Training set after SMOTE: 453,204 samples
+   - Fraud cases after SMOTE: 226,602
+
+7. OUTLIER HANDLING
+   - Decision: Keep all data (no aggressive removal)
+   - Rationale: Fraud patterns are often extreme values
+   - Approach: Robust models instead of filtering
+
+8. OUTPUT FILES
+   Location: ../data/processed/
+   - X_train_scaled.csv - (226980, 30)
+   - X_test_scaled.csv - (56746, 30)
+   - y_train.csv - (226980,)
+   - y_test.csv - (56746,)
+   - X_train_smote.csv - (453204, 30) (optional)
+   - y_train_smote.csv - (453204,) (optional)
+
+   Location: ../models/
+   - scaler.pkl - StandardScaler object (for future predictions)
+
+9. DATA LEAKAGE PREVENTION
+   ✓ All transformations (log) applied BEFORE train-test split
+   ✓ Scaler fitted ONLY on training data
+   ✓ Stratified split preserves fraud ratio
+   ✓ SMOTE applied ONLY to training set
+   ✓ Test set never used during preprocessing fits
+   ✓ No information leaked from test to train
+
+10. NEXT STEPS
+    ✓ Phase 3: Model Training (use class_weight="balanced")
+    ✓ Phase 4: Hyperparameter Tuning (GridSearchCV)
+    ✓ Phase 5: Evaluation (Precision, Recall, ROC-AUC)
+    ✓ Phase 6: Model Selection
+    ✓ Phase 7: SHAP Explainability
+
+================================================================================
