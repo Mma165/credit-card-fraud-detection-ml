@@ -1,8 +1,10 @@
+/data/processed
+/data/raw/creditcard.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
-data
+
 # C extensions
 *.so
 

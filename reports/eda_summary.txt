@@ -1,0 +1,53 @@
+
+================================================================================
+EXPLORATORY DATA ANALYSIS - KEY INSIGHTS
+================================================================================
+
+1. DATASET OVERVIEW
+   - Total transactions: 284,807
+   - Features: 31
+   - Data types: All numeric (suitable for ML)
+   - Missing values: None detected ✓
+   - Duplicates: 1081 rows
+
+2. CLASS IMBALANCE (CRITICAL)
+   - Normal transactions: 284,315 (99.827%)
+   - Fraudulent transactions: 492 (0.173%)
+   - Imbalance ratio: 1:577
+       HIGHLY IMBALANCED - Standard accuracy metrics will be misleading
+   ✓ Must use class weights or SMOTE in training phase
+   ✓ Must prioritize Recall and ROC-AUC over accuracy
+
+3. FEATURE CHARACTERISTICS
+   - 28 features (V1-V28): PCA-transformed components
+   - 1 feature: Time (seconds since first transaction)
+   - 1 feature: Amount (transaction amount in dollars)
+   - All features already scaled (except Amount/Time)
+
+4. CORRELATION WITH FRAUD
+   Most positively correlated with fraud:
+Feature  Correlation
+    V11     0.154876
+     V4     0.133447
+     V2     0.091289
+
+   Most negatively correlated with fraud:
+Feature  Correlation
+    V12    -0.260593
+    V14    -0.302544
+    V17    -0.326481
+
+5. AMOUNT ANALYSIS
+   - Normal transactions: Mean $88.29, Median $22.00
+   - Fraudulent transactions: Mean $122.21, Median $9.25
+   ✓ Fraudulent transactions tend to have smaller amounts
+
+6. NEXT STEPS
+   ✓ Phase 2: Preprocessing (scaling, stratified split)
+   ✓ Phase 3: Training (apply class weights)
+   ✓ Phase 4: Hyperparameter tuning
+   ✓ Phase 5: Evaluation (Recall, ROC-AUC priority)
+   ✓ Phase 6: Model selection
+   ✓ Phase 7: SHAP explainability
+
+================================================================================
