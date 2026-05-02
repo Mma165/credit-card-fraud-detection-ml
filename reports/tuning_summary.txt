@@ -1,0 +1,52 @@
+================================================================================
+MODEL TUNING SUMMARY REPORT
+================================================================================
+
+1. INSIGHTS USED
+   - Extreme class imbalance: use class weighting / scale_pos_weight.
+   - Standard accuracy is avoided; recall, ROC-AUC, average precision, F1, and F2 are tracked.
+   - Preprocessing outputs are reused directly to preserve the original stratified split.
+   - Test set is used only for final evaluation after hyperparameters and thresholds are chosen.
+   - Best baseline: CatBoost with ROC-AUC=0.9741, Recall=0.8105, F1=0.6444.
+
+2. TUNING SETUP
+   - Models tuned: CatBoost, XGBoost, Logistic Regression, Random Forest
+   - CV folds: 3
+   - Randomized search iterations per model: 12
+   - Refit score: average_precision
+   - Threshold rule: maximize F2 with recall >= 0.80 when possible
+
+3. BEST TUNED MODEL
+   - Model: XGBoost
+   - Validation threshold: 0.89896
+   - Validation precision: 0.9559
+   - Validation recall: 0.8553
+   - Validation F2: 0.8737
+
+4. FINAL TEST PERFORMANCE
+   - Precision: 0.9867
+   - Recall: 0.7789
+   - F1: 0.8706
+   - F2: 0.8132
+   - ROC-AUC: 0.9683
+   - Average precision: 0.8114
+   - False positives: 1
+   - False negatives: 21
+   - True positives: 74
+
+5. OUTPUT FILES
+   - reports/tuning_cv_results.csv
+   - reports/tuning_results.csv
+   - reports/tuned_thresholds.csv
+   - reports/tuning_summary.txt
+   - models/tuned_<model>.pkl
+   - models/best_tuned_model.pkl
+   - plots/05_tuned_pr_roc_curves.png
+
+6. NEXT STEPS
+   - Compare tuned performance with the baseline report.
+   - If recall is still too low, lower the threshold or increase MIN_RECALL_TARGET.
+   - If false positives are too high, raise the threshold or select a model with stronger validation precision.
+   - Move to SHAP explainability for the selected tuned model.
+
+================================================================================

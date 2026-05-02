@@ -1,0 +1,41 @@
+================================================================================
+FINAL MODEL SELECTION REPORT
+================================================================================
+
+1. DECISION PRINCIPLE
+   The selected model must catch fraud reliably without creating an unreasonable review workload.
+   Accuracy is not used because the dataset is extremely imbalanced.
+
+2. SELECTED MODEL
+   - Model: XGBoost
+   - Threshold: 0.89896
+   - Selection score: 0.8239
+   - Eligible by gates: True
+
+3. FINAL TEST PERFORMANCE
+   - Precision: 0.9867
+   - Recall: 0.7789
+   - F1: 0.8706
+   - F2: 0.8132
+   - ROC-AUC: 0.9683
+   - Average precision: 0.8114
+   - False positives: 1
+   - False negatives: 21
+
+4. WHY OTHER MODELS WERE NOT SELECTED
+   - CatBoost: passed gates but had lower selection score (0.7794)
+   - Random Forest: passed gates but had lower selection score (0.6222)
+   - Logistic Regression: failed gate(s): Precision, F2, AP, FP
+
+5. FILES CREATED
+   - reports/final_model_decision.csv
+   - reports/model_selection_summary.txt
+   - reports/final_model_card.md
+   - models/final_model.pkl
+   - models/final_model_metadata.json
+
+6. FINAL PROJECT NEXT STEP
+   Use the final model only with the documented preprocessing pipeline and threshold.
+   For explanation, continue with SHAP analysis on the selected final model.
+
+================================================================================

@@ -1,0 +1,38 @@
+{
+  "selected_model": "XGBoost",
+  "source_model_file": "models\\tuned_xgboost.pkl",
+  "final_model_file": "models\\final_model.pkl",
+  "threshold": 0.8989636898040771,
+  "selection_score": 0.8238992204949274,
+  "eligible": true,
+  "metrics": {
+    "precision": 0.9866666666666668,
+    "recall": 0.7789473684210526,
+    "f1": 0.8705882352941177,
+    "f2": 0.8131868131866411,
+    "roc_auc": 0.96826107032068,
+    "average_precision": 0.811375553423567,
+    "false_positives": 1,
+    "false_negatives": 21,
+    "true_positives": 74,
+    "overfit_gap": 0.03173892967932
+  },
+  "selection_gates": {
+    "Minimum Precision": 0.8,
+    "Minimum Recall": 0.75,
+    "Minimum F2": 0.75,
+    "Minimum Average Precision": 0.75,
+    "Maximum Overfit Gap": 0.06,
+    "Maximum False Positives": 10
+  },
+  "selection_weights": {
+    "F2": 0.25,
+    "Average Precision": 0.2,
+    "Precision": 0.15,
+    "Recall": 0.15,
+    "ROC-AUC": 0.1,
+    "Low FP": 0.05,
+    "Low FN": 0.05,
+    "Stability": 0.05
+  }
+}

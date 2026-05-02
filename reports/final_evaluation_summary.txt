@@ -1,0 +1,43 @@
+================================================================================
+FINAL MODEL EVALUATION REPORT
+================================================================================
+
+1. EVALUATION RULES
+   - The held-out test set is used only here, after tuning and threshold selection.
+   - Accuracy is not used as a headline metric because fraud is less than 1% of the data.
+   - Precision, recall, F1, F2, ROC-AUC, average precision, FP, and FN are reported.
+   - F2 is included because missing fraud is usually more expensive than reviewing a small number of false alarms.
+
+2. BEST MODELS BY EVALUATION VIEW
+   - Best F2 balance: XGBoost (F2=0.8132, Precision=0.9867, Recall=0.7789)
+   - Best average precision: CatBoost (AP=0.8138, ROC-AUC=0.9757)
+   - Highest recall: Logistic Regression (Recall=0.8000, FN=19)
+   - Highest precision: XGBoost (Precision=0.9867, FP=1)
+
+3. MODEL TRADEOFFS
+   - XGBoost:
+     threshold=0.89896, precision=0.9867, recall=0.7789, F2=0.8132, AP=0.8114
+     catches 74 fraud cases, misses 21, and creates 1 false positives.
+   - CatBoost:
+     threshold=0.92933, precision=0.9733, recall=0.7684, F2=0.8022, AP=0.8138
+     catches 73 fraud cases, misses 22, and creates 2 false positives.
+   - Random Forest:
+     threshold=0.36345, precision=0.9359, recall=0.7684, F2=0.7969, AP=0.8102
+     catches 73 fraud cases, misses 22, and creates 5 false positives.
+   - Logistic Regression:
+     threshold=0.90620, precision=0.2296, recall=0.8000, F2=0.5345, AP=0.5026
+     catches 76 fraud cases, misses 19, and creates 255 false positives.
+
+4. FILES CREATED
+   - reports/final_evaluation_results.csv
+   - reports/default_threshold_evaluation.csv
+   - reports/threshold_sensitivity.csv
+   - reports/final_evaluation_summary.txt
+   - plots/06_final_confusion_matrices.png
+   - plots/07_final_pr_roc_curves.png
+   - plots/08_threshold_sensitivity.png
+
+5. NEXT STEP
+   - Use notebooks/06_model_selection.ipynb to turn these evaluation tradeoffs into a final project decision.
+
+================================================================================
