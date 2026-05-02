@@ -17,11 +17,11 @@ $ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 2) create the environment 
 ``` bash
-~ conda create -n mini-rag-app python=3.10 
+~ conda create -n credit_card_fraud_detection python=3.10 
 ``` 
 3) Activate the environment:
 ``` bash 
-$ conda activate mini-rag-app
+$ conda activate credit_card_fraud_detection
 ``` 
 
 ### install required packages 
